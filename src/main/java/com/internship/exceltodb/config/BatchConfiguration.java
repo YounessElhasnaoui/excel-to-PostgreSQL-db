@@ -1,11 +1,12 @@
-package com.internship.exceltodb;
+package com.internship.exceltodb.config;
 
 
 import com.internship.exceltodb.model.User;
+import com.internship.exceltodb.model.Event;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.extensions.excel.poi.PoiItemReader;
 import org.springframework.batch.extensions.excel.RowMapper;
@@ -17,11 +18,11 @@ public class BatchConfiguration {
 
     @Bean
     public ItemReader<User> userItemReader() {
-        PoiItemReader<User> reader = new PoiItemReader<>();
-        reader.setResource(new FileSystemResource("path/to/your/excel/users.xlsx"));
-        reader.setRowMapper(new UserExcelRowMapper());
-        reader.setLinesToSkip(1);
-        return reader;
+        PoiItemReader<User> readerUser = new PoiItemReader<>();
+        readerUser.setResource(new ClassPathResource("data/events.xlsx"));
+        readerUser.setRowMapper(new UserExcelRowMapper());
+        readerUser.setLinesToSkip(1);
+        return readerUser;
     }
 
     public static class UserExcelRowMapper implements RowMapper<User> {
@@ -42,5 +43,32 @@ public class BatchConfiguration {
             return user;
         }
     }
+
+
+    @Bean
+    public ItemReader<Event> eventItemReader() {
+        PoiItemReader<Event> readerEvent = new PoiItemReader<>();
+        readerEvent.setResource(new ClassPathResource("data/events.xlsx"));
+        readerEvent.setRowMapper(new EventExcelRowMapper());
+        readerEvent.setLinesToSkip(1);
+        return readerEvent;
+    }
+
+    public static class EventExcelRowMapper implements RowMapper<Event> {
+        @Override
+        public Event mapRow(RowSet rs) throws Exception {
+            Event event = new Event();
+            event.setEventId(Integer.parseInt(rs.getCurrentRow()[0]));
+            event.setEventName(rs.getCurrentRow()[1]);
+            event.setEventCity(rs.getCurrentRow()[2]);
+            event.setEventYear(Integer.parseInt(rs.getCurrentRow()[3]));
+            event.setEventMonth(Integer.parseInt(rs.getCurrentRow()[4]));
+            event.setEventDay(Integer.parseInt(rs.getCurrentRow()[5]));
+            event.setEventTime(rs.getCurrentRow()[6]);
+            event.setEventUsersCount(Integer.parseInt(rs.getCurrentRow()[7]));
+            return event;
+        }
+    }
+
 
 }
