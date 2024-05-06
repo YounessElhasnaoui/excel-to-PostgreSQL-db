@@ -1,14 +1,12 @@
 package com.internship.exceltodb.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Column;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "events")
 public class Event {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "event_id")
     private int eventId;
 
@@ -33,66 +31,65 @@ public class Event {
     @Column(name = "event_users_count")
     private int eventUsersCount;
 
-    // Getters
+    // Getters and Setters
     public int getEventId() {
         return eventId;
+    }
+
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
     }
 
     public String getEventName() {
         return eventName;
     }
 
-    public String getEventCity() {
-        return eventCity;
-    }
-
-    public int getEventYear() {
-        return eventYear;
-    }
-
-    public int getEventMonth() {
-        return eventMonth;
-    }
-
-    public int getEventDay() {
-        return eventDay;
-    }
-
-    public String getEventTime() {
-        return eventTime;
-    }
-
-    public int getEventUsersCount() {
-        return eventUsersCount;
-    }
-
-    // Setters
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
-    }
-
     public void setEventName(String eventName) {
         this.eventName = eventName;
+    }
+
+    public String getEventCity() {
+        return eventCity;
     }
 
     public void setEventCity(String eventCity) {
         this.eventCity = eventCity;
     }
 
+    public int getEventYear() {
+        return eventYear;
+    }
+
     public void setEventYear(int eventYear) {
         this.eventYear = eventYear;
+    }
+
+    public int getEventMonth() {
+        return eventMonth;
     }
 
     public void setEventMonth(int eventMonth) {
         this.eventMonth = eventMonth;
     }
 
+    public int getEventDay() {
+        return eventDay;
+    }
+
     public void setEventDay(int eventDay) {
         this.eventDay = eventDay;
     }
 
+    public String getEventTime() {
+        return eventTime;
+    }
+
     public void setEventTime(String eventTime) {
         this.eventTime = eventTime;
+    }
+
+    public int getEventUsersCount() {
+        return eventUsersCount;
     }
 
     public void setEventUsersCount(int eventUsersCount) {
