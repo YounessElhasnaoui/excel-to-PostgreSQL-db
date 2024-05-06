@@ -12,7 +12,7 @@ public class UserExcelItemReader implements ItemReader<UserDto> {
     private Iterator<Row> rowIterator;
 
     public UserExcelItemReader() throws Exception {
-        InputStream inputStream = new ClassPathResource("data/users.xlsx").getInputStream();
+        InputStream inputStream = new ClassPathResource("data/events.xlsx").getInputStream();
         Workbook workbook = WorkbookFactory.create(inputStream);
         Sheet sheet = workbook.getSheetAt(0);
         this.rowIterator = sheet.iterator();
