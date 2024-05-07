@@ -94,6 +94,7 @@ public class BatchConfiguration {
                 .start(eventStep())
                 .next(userStep())
                 .listener(new JobListener())
+                .preventRestart()
                 .build();
     }
 }

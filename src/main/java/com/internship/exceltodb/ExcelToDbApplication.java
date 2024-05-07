@@ -12,6 +12,8 @@ import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
+import java.util.Date;
+
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.internship.exceltodb.repository")
 @EntityScan(basePackages = "com.internship.exceltodb.model")
@@ -31,7 +33,9 @@ public class ExcelToDbApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		logger.info("Starting Excel to DB import job.");
-		jobLauncher.run(importExcelJob, new JobParametersBuilder().toJobParameters());
+		jobLauncher.run(importExcelJob, new JobParametersBuilder()
+				.addDate("timestamp", new Date())
+				.toJobParameters());
 		logger.info("Finished Excel to DB import job.");
 	}
 }
