@@ -3,17 +3,20 @@ package com.internship.exceltodb.service;
 import com.internship.exceltodb.dto.UserDto;
 import com.internship.exceltodb.model.User;
 import com.internship.exceltodb.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
     @Autowired
     private UserRepository userRepository;
 
-    public User saveUser(UserDto userDto) {
+    public void saveUser(UserDto userDto) {
         User user = new User();
-        // Map DTO to entity
         user.setUserId(userDto.getUserId());
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
@@ -23,12 +26,10 @@ public class UserService {
         user.setDobDay(userDto.getDobDay());
         user.setGender(userDto.getGender());
         user.setCity(userDto.getCity());
-        user.setEventId(userDto.getEventId());
         user.setRole(userDto.getRole());
-        return userRepository.save(user);
-    }
+        user.setEventId(userDto.getEventId());
 
-    public User findUserById(int id) {
-        return userRepository.findById(id).orElse(null);
+        userRepository.save(user);
+        logger.info("Saved User: {}", user);
     }
 }

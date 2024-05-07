@@ -100,4 +100,21 @@ public class UserDto {
     public void setRole(String role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", dobYear=" + dobYear +
+                ", dobMonth=" + dobMonth +
+                ", dobDay=" + dobDay +
+                ", gender='" + gender + '\'' +
+                ", city='" + city + '\'' +
+                ", eventId=" + eventId +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }
