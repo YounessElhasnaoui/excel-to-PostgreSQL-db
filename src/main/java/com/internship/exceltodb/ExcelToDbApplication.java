@@ -1,5 +1,7 @@
 package com.internship.exceltodb;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -14,6 +16,7 @@ import org.springframework.boot.CommandLineRunner;
 @EnableJpaRepositories(basePackages = "com.internship.exceltodb.repository")
 @EntityScan(basePackages = "com.internship.exceltodb.model")
 public class ExcelToDbApplication implements CommandLineRunner {
+	private static final Logger logger = LoggerFactory.getLogger(ExcelToDbApplication.class);
 
 	@Autowired
 	private JobLauncher jobLauncher;
@@ -27,6 +30,8 @@ public class ExcelToDbApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		logger.info("Starting Excel to DB import job.");
 		jobLauncher.run(importExcelJob, new JobParametersBuilder().toJobParameters());
+		logger.info("Finished Excel to DB import job.");
 	}
 }
