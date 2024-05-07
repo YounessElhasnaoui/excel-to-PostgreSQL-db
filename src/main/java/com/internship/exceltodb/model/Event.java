@@ -1,12 +1,12 @@
 package com.internship.exceltodb.model;
 
 import jakarta.persistence.*;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "events")
 public class Event {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "event_id")
     private int eventId;
 
@@ -26,7 +26,7 @@ public class Event {
     private int eventDay;
 
     @Column(name = "event_time")
-    private String eventTime;
+    private LocalTime eventTime;
 
     @Column(name = "event_users_count")
     private int eventUsersCount;
@@ -80,11 +80,11 @@ public class Event {
         this.eventDay = eventDay;
     }
 
-    public String getEventTime() {
+    public LocalTime getEventTime() {
         return eventTime;
     }
 
-    public void setEventTime(String eventTime) {
+    public void setEventTime(LocalTime eventTime) {
         this.eventTime = eventTime;
     }
 
@@ -94,5 +94,19 @@ public class Event {
 
     public void setEventUsersCount(int eventUsersCount) {
         this.eventUsersCount = eventUsersCount;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventId=" + eventId +
+                ", eventName='" + eventName + '\'' +
+                ", eventCity='" + eventCity + '\'' +
+                ", eventYear=" + eventYear +
+                ", eventMonth=" + eventMonth +
+                ", eventDay=" + eventDay +
+                ", eventTime=" + eventTime +
+                ", eventUsersCount=" + eventUsersCount +
+                '}';
     }
 }

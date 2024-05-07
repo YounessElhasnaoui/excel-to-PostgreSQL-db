@@ -3,17 +3,20 @@ package com.internship.exceltodb.service;
 import com.internship.exceltodb.dto.EventDto;
 import com.internship.exceltodb.model.Event;
 import com.internship.exceltodb.repository.EventRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EventService {
+    private static final Logger logger = LoggerFactory.getLogger(EventService.class);
+
     @Autowired
     private EventRepository eventRepository;
 
-    public Event saveEvent(EventDto eventDto) {
+    public void saveEvent(EventDto eventDto) {
         Event event = new Event();
-        // Map DTO to entity
         event.setEventId(eventDto.getEventId());
         event.setEventName(eventDto.getEventName());
         event.setEventCity(eventDto.getEventCity());
@@ -22,10 +25,8 @@ public class EventService {
         event.setEventDay(eventDto.getEventDay());
         event.setEventTime(eventDto.getEventTime());
         event.setEventUsersCount(eventDto.getEventUsersCount());
-        return eventRepository.save(event);
-    }
-
-    public Event findEventById(int id) {
-        return eventRepository.findById(id).orElse(null);
+        eventRepository.flush();
+        eventRepository.save(event);
+        logger.info("Saved Event: {}", event);
     }
 }

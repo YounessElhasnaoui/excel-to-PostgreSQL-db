@@ -1,5 +1,7 @@
 package com.internship.exceltodb.dto;
 
+import java.time.LocalTime;
+
 public class EventDto {
     private int eventId;
     private String eventName;
@@ -7,12 +9,10 @@ public class EventDto {
     private int eventYear;
     private int eventMonth;
     private int eventDay;
-    private String eventTime;
+    private LocalTime eventTime;
     private int eventUsersCount;
 
-    public int getEventId() {
-        return eventId;
-    }
+    public int getEventId() { return eventId; }
 
     public void setEventId(int eventId) {
         this.eventId = eventId;
@@ -58,11 +58,11 @@ public class EventDto {
         this.eventDay = eventDay;
     }
 
-    public String getEventTime() {
+    public LocalTime getEventTime() {
         return eventTime;
     }
 
-    public void setEventTime(String eventTime) {
+    public void setEventTime(LocalTime eventTime) {
         this.eventTime = eventTime;
     }
 
@@ -72,5 +72,19 @@ public class EventDto {
 
     public void setEventUsersCount(int eventUsersCount) {
         this.eventUsersCount = eventUsersCount;
+    }
+
+    @Override
+    public String toString() {
+        return "EventDto{" +
+                "eventId=" + eventId +
+                ", eventName='" + eventName + '\'' +
+                ", eventCity='" + eventCity + '\'' +
+                ", eventYear=" + eventYear +
+                ", eventMonth=" + eventMonth +
+                ", eventDay=" + eventDay +
+                ", eventTime='" + eventTime + '\'' +
+                ", eventUsersCount=" + eventUsersCount +
+                '}';
     }
 }
