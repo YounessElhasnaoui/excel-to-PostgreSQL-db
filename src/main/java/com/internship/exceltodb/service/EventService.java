@@ -1,7 +1,6 @@
 package com.internship.exceltodb.service;
 
 import com.internship.exceltodb.dto.EventDto;
-import com.internship.exceltodb.model.Event;
 import com.internship.exceltodb.repository.EventRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

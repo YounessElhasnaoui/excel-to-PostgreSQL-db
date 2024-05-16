@@ -1,7 +1,6 @@
 package com.internship.exceltodb.service;
 
 import com.internship.exceltodb.dto.UserDto;
-import com.internship.exceltodb.model.User;
 import com.internship.exceltodb.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
