@@ -1,25 +1,10 @@
-package com.internship.exceltodb.model;
+package com.internship.exceltodb.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.Table;
+public class AppOwnerDto {
 
-@Entity
-@Table(name = "app_owner")
-public class AppOwner {
-
-    @Column(name = "application")
     private String application;
-
-    @Column(name = "affectation_de_personne")
     private String affectationDePersonne;
-
-    @Id
-    @Column(name = "assignation_de_responsabilite")
     private String assignationDeResponsabilite;
-
-    @Column(name = "nom_court")
     private String nomCourt;
 
     // Getters only

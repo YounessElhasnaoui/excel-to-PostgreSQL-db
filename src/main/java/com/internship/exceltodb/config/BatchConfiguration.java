@@ -1,11 +1,5 @@
 package com.internship.exceltodb.config;
 
-import com.internship.exceltodb.dto.UserDto;
-import com.internship.exceltodb.dto.EventDto;
-import com.internship.exceltodb.reader.UserExcelItemReader;
-import com.internship.exceltodb.reader.EventExcelItemReader;
-import com.internship.exceltodb.service.UserService;
-import com.internship.exceltodb.service.EventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
