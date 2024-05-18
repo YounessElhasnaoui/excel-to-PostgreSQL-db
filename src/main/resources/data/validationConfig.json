@@ -1,0 +1,16 @@
+{
+  "Applications": {
+    "4": ["Interne", "Externe", "Groupe", "Interne Filiale"],
+    "6": ["Oui", "Non"],
+    "7": ["Vitale", "Critique", "Secondaire", "Non traité", "Exclu"],
+    "8": ["Non traité", "Exclu", "Faible", "Medium", "Elevé", "Critique", "Critique Groupe"],
+    "9": ["0", "<10", "10 – 49", "50 – 99", "100 – 499", "500 – 999", "1000 – 4999", ">5000"],
+    "10": ["Système applicatif", "Application", "Module", "Batch", "API", "Front End", "Micro Service"],
+    "11": ["Stratégique", "Core", "Non Core"],
+    "12": ["En production", "En développement", "Décommissionnée", "Move To Run"],
+    "13": ["Non renseignée", "Par Active Directory", "Par l’application", "Par d’autres moyens", "Par RTFE", "Par TSS", "Par SAFE", "Via KeyClock", "Vasco", "Autre"],
+    "14": ["Progiciel", "Développement Spécifique", "Middleware", "Système", "Bureautique", "Socle"],
+    "22": ["Oui", "Non"],
+    "23": ["Oui", "Non"]
+  }
+}

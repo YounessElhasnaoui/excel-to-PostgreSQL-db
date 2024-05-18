@@ -1,21 +1,25 @@
 package com.internship.exceltodb.dto;
 import com.internship.exceltodb.annotation.ExcelColumn;
 
-public class AppTagDto {
+public class AppRTPODto {
 
     private String sheetName;
 
     @ExcelColumn(0)
     private String application;
 
+    @ExcelColumn(2)
+    private String exigenceImposee;
+
     @ExcelColumn(3)
-    private String tag;
+    private String exigence;
 
     @ExcelColumn(4)
     private String nomCourt;
 
-    public AppTagDto() {
-        this.sheetName = "App_Tag";
+
+    public AppRTPODto() {
+        this.sheetName = "App_RTPO";
     }
 
     public String getApplication() {
@@ -26,12 +30,20 @@ public class AppTagDto {
         this.application = application;
     }
 
-    public String getTag() {
-        return tag;
+    public String getExigenceImposee() {
+        return exigenceImposee;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setExigenceImposee(String exigenceImposee) {
+        this.exigenceImposee = exigenceImposee;
+    }
+
+    public String getExigence() {
+        return exigence;
+    }
+
+    public void setExigence(String exigence) {
+        this.exigence = exigence;
     }
 
     public String getNomCourt() {
@@ -44,10 +56,11 @@ public class AppTagDto {
 
     @Override
     public String toString() {
-        return "AppTagDto{" +
+        return "AppRTPODto{" +
                 "sheetName='" + sheetName + '\'' +
                 ", application='" + application + '\'' +
-                ", tag='" + tag + '\'' +
+                ", exigenceImposee='" + exigenceImposee + '\'' +
+                ", exigence='" + exigence + '\'' +
                 ", nomCourt='" + nomCourt + '\'' +
                 '}';
     }
