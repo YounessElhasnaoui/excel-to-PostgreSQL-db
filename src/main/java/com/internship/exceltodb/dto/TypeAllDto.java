@@ -1,13 +1,16 @@
 package com.internship.exceltodb.dto;
 import com.internship.exceltodb.annotation.ExcelColumn;
+import com.internship.exceltodb.annotation.DtoField;
 public class TypeAllDto {
 
     private String sheetName;
 
     @ExcelColumn(0)
+    @DtoField("type")
     private String type;
 
     @ExcelColumn(1)
+    @DtoField("nom")
     private String nom;
 
     public TypeAllDto() {

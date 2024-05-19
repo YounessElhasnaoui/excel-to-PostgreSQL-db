@@ -59,7 +59,7 @@ public class DynamicExcelReader {
                             field.getAnnotation(ExcelColumn.class).value() == columnIndex) {
                         String setterName = "set" + capitalize(field.getName());
                         Method setter = clazz.getMethod(setterName, field.getType());
-                        Object cellValue = convertCellValue(cell, field.getType());
+                        Object cellValue = convertCellValue(cell);
 
                         logger.debug("Setting field: {} with value: {}", field.getName(), cellValue);
                         setter.invoke(instance, cellValue);
@@ -76,24 +76,24 @@ public class DynamicExcelReader {
         return result;
     }
 
-    private Object convertCellValue(Cell cell, Class<?> fieldType) {
+    private Object convertCellValue(Cell cell) {
+        if (cell == null || cell.getCellType() == CellType.BLANK) {
+            return "";
+        }
+
         switch (cell.getCellType()) {
             case STRING:
                 return cell.getStringCellValue();
             case NUMERIC:
                 if (DateUtil.isCellDateFormatted(cell)) {
-                    return cell.getDateCellValue();
+                    return cell.getDateCellValue().toString();
                 } else {
-                    if (fieldType == Long.class || fieldType == long.class) {
-                        return (long) cell.getNumericCellValue();
-                    } else {
-                        return cell.getNumericCellValue();
-                    }
+                    return String.valueOf(cell.getNumericCellValue());
                 }
             case BOOLEAN:
-                return cell.getBooleanCellValue();
+                return String.valueOf(cell.getBooleanCellValue());
             default:
-                return null;
+                return "";
         }
     }
 

@@ -1,21 +1,26 @@
 package com.internship.exceltodb.dto;
 
 import com.internship.exceltodb.annotation.ExcelColumn;
+import com.internship.exceltodb.annotation.DtoField;
 
 public class AppTechnoDto {
 
     private String sheetName;
 
     @ExcelColumn(0)
+    @DtoField("application")
     private String application;
 
     @ExcelColumn(2)
+    @DtoField("technologieLogicielleSupport")
     private String technologieLogicielleSupport;
 
     @ExcelColumn(3)
+    @DtoField("technologieLogicielle")
     private String technologieLogicielle;
 
     @ExcelColumn(4)
+    @DtoField("nomCourt")
     private String nomCourt;
 
     public AppTechnoDto() {

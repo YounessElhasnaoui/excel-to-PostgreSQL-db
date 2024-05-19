@@ -1,20 +1,25 @@
 package com.internship.exceltodb.dto;
 import com.internship.exceltodb.annotation.ExcelColumn;
+import com.internship.exceltodb.annotation.DtoField;
 
 public class AppRTPODto {
 
     private String sheetName;
 
     @ExcelColumn(0)
+    @DtoField("application")
     private String application;
 
     @ExcelColumn(2)
+    @DtoField("exigenceImposee")
     private String exigenceImposee;
 
     @ExcelColumn(3)
+    @DtoField("exigence")
     private String exigence;
 
     @ExcelColumn(4)
+    @DtoField("nomCourt")
     private String nomCourt;
 
 

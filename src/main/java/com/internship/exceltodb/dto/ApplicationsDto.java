@@ -1,101 +1,123 @@
 package com.internship.exceltodb.dto;
-import com.internship.exceltodb.config.BatchConfiguration;
-import com.internship.exceltodb.util.ValidationConfig;
 
+import com.internship.exceltodb.annotation.DtoField;
 import com.internship.exceltodb.annotation.ExcelColumn;
-import java.util.Arrays;
+import com.internship.exceltodb.util.ValidationUtil;
 
-import java.util.Date;
 
 public class ApplicationsDto {
 
     private String sheetName;
 
-    @ExcelColumn(0)
-    private String application;
-
-    @ExcelColumn(1)
-    private String nomCourt;
-
-    @ExcelColumn(2)
-    private String commentaire;
-
-    @ExcelColumn(3)
-    private String irt;
-
-    @ExcelColumn(4)
-    private String sgHebergement;
-
-    @ExcelColumn(5)
-    private String sgDateDeMiseEnProd;
-
-    @ExcelColumn(6)
-    private String sgExpositionExterne;
-
-    @ExcelColumn(7)
-    private String sgCriticite;
-
-    @ExcelColumn(8)
-    private String sgCriticiteRs;
-
-    @ExcelColumn(9)
-    private String sgNbUtilisateurs;
-
-    @ExcelColumn(10)
-    private String sgNiveauApplication;
-
-    @ExcelColumn(11)
-    private String sgNiveauDImportanceMetier;
-
-    @ExcelColumn(12)
-    private String sgStatut;
-
-    @ExcelColumn(13)
-    private String sgTypeDAuthentification;
-
-    @ExcelColumn(14)
-    private String typeApplication;
-
-    @ExcelColumn(15)
-    private String sgIdMegaKear;
-
-    @ExcelColumn(16)
-    private String sgLastAccess;
-
-    @ExcelColumn(17)
-    private String sgCoutDeFonctionnement;
-
-    @ExcelColumn(18)
-    private String sgCoutDeLicence;
-
-    @ExcelColumn(19)
-    private String nom;
-
-    @ExcelColumn(20)
-    private Date dateDeCreation;
-
-    @ExcelColumn(21)
-    private Date dateDeModification;
-
-    @ExcelColumn(22)
-    private String sgIsEligibleAsa;
-
-    @ExcelColumn(23)
-    private String sgIsEligibleServer;
-
-    @ExcelColumn(24)
-    private String framework;
-
-    @ExcelColumn(25)
-    private String nombreDeTransactions;
-
-
     public ApplicationsDto() {
         this.sheetName = "Applications";
     }
 
+    @DtoField("application")
+    @ExcelColumn(0)
+    private String application;
 
-    // Getters only
+    @ExcelColumn(1)
+    @DtoField("nomCourt")
+    private String nomCourt;
+
+    @ExcelColumn(2)
+    @DtoField("commentaire")
+    private String commentaire;
+
+    @ExcelColumn(3)
+    @DtoField("irt")
+    private String irt;
+
+    @ExcelColumn(4)
+    @DtoField("sgHebergement")
+    private String sgHebergement;
+
+    @ExcelColumn(5)
+    @DtoField("sgDateDeMiseEnProd")
+    private String sgDateDeMiseEnProd;
+
+    @ExcelColumn(6)
+    @DtoField("sgExpositionExterne")
+    private String sgExpositionExterne;
+
+    @ExcelColumn(7)
+    @DtoField("sgCriticite")
+    private String sgCriticite;
+
+    @ExcelColumn(8)
+    @DtoField("sgCriticiteRs")
+    private String sgCriticiteRs;
+
+    @ExcelColumn(9)
+    @DtoField("sgNbUtilisateurs")
+    private String sgNbUtilisateurs;
+
+    @ExcelColumn(10)
+    @DtoField("sgNiveauApplication")
+    private String sgNiveauApplication;
+
+    @ExcelColumn(11)
+    @DtoField("sgNiveauDImportanceMetier")
+    private String sgNiveauDImportanceMetier;
+
+    @ExcelColumn(12)
+    @DtoField("sgStatut")
+    private String sgStatut;
+
+    @ExcelColumn(13)
+    @DtoField("sgTypeDAuthentification")
+    private String sgTypeDAuthentification;
+
+    @ExcelColumn(14)
+    @DtoField("typeApplication")
+    private String typeApplication;
+
+    @ExcelColumn(15)
+    @DtoField("sgIdMegaKear")
+    private String sgIdMegaKear;
+
+    @ExcelColumn(16)
+    @DtoField("sgLastAccess")
+    private String sgLastAccess;
+
+    @ExcelColumn(17)
+    @DtoField("sgCoutDeFonctionnement")
+    private String sgCoutDeFonctionnement;
+
+    @ExcelColumn(18)
+    @DtoField("sgCoutDeLicence")
+    private String sgCoutDeLicence;
+
+    @ExcelColumn(19)
+    @DtoField("nom")
+    private String nom;
+
+    @ExcelColumn(20)
+    @DtoField("dateDeCreation")
+    private String dateDeCreation;
+
+    @ExcelColumn(21)
+    @DtoField("dateDeModification")
+    private String dateDeModification;
+
+    @ExcelColumn(22)
+    @DtoField("sgIsEligibleAsa")
+    private String sgIsEligibleAsa;
+
+    @ExcelColumn(23)
+    @DtoField("sgIsEligibleServer")
+    private String sgIsEligibleServer;
+
+    @ExcelColumn(24)
+    @DtoField("framework")
+    private String framework;
+
+    @ExcelColumn(25)
+    @DtoField("nombreDeTransactions")
+    private String nombreDeTransactions;
+
+
     public String getApplication() {
         return application;
     }
@@ -133,8 +155,11 @@ public class ApplicationsDto {
     }
 
     public void setSgHebergement(String sgHebergement) {
-        validate("SG - Hebergement", sgHebergement, 4);
-        this.sgHebergement = sgHebergement;
+        if (ValidationUtil.validate("Applications", 4, sgHebergement)) {
+            this.sgHebergement = sgHebergement;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgHebergement");
+        }
     }
 
     public String getSgDateDeMiseEnProd() {
@@ -150,8 +175,11 @@ public class ApplicationsDto {
     }
 
     public void setSgExpositionExterne(String sgExpositionExterne) {
-        validate("SG - Exposition externe", sgExpositionExterne, 6);
-        this.sgExpositionExterne = sgExpositionExterne;
+        if (ValidationUtil.validate("Applications", 6, sgExpositionExterne)) {
+            this.sgExpositionExterne = sgExpositionExterne;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgExpositionExterne");
+        }
     }
 
     public String getSgCriticite() {
@@ -159,8 +187,11 @@ public class ApplicationsDto {
     }
 
     public void setSgCriticite(String sgCriticite) {
-        validate("SG - Criticité", sgCriticite, 7);
-        this.sgCriticite = sgCriticite;
+        if (ValidationUtil.validate("Applications", 7, sgCriticite)) {
+            this.sgCriticite = sgCriticite;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgCriticite");
+        }
     }
 
     public String getSgCriticiteRs() {
@@ -168,8 +199,11 @@ public class ApplicationsDto {
     }
 
     public void setSgCriticiteRs(String sgCriticiteRs) {
-        validate("SG - Criticité RS", sgCriticiteRs, 8);
-        this.sgCriticiteRs = sgCriticiteRs;
+        if (ValidationUtil.validate("Applications", 8, sgCriticiteRs)) {
+            this.sgCriticiteRs = sgCriticiteRs;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgCriticiteRs");
+        }
     }
 
     public String getSgNbUtilisateurs() {
@@ -177,8 +211,11 @@ public class ApplicationsDto {
     }
 
     public void setSgNbUtilisateurs(String sgNbUtilisateurs) {
-        validate("SG - NB utilisateurs", sgNbUtilisateurs, 9);
-        this.sgNbUtilisateurs = sgNbUtilisateurs;
+        if (ValidationUtil.validate("Applications", 9, sgNbUtilisateurs)) {
+            this.sgNbUtilisateurs = sgNbUtilisateurs;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgNbUtilisateurs");
+        }
     }
 
     public String getSgNiveauApplication() {
@@ -186,8 +223,11 @@ public class ApplicationsDto {
     }
 
     public void setSgNiveauApplication(String sgNiveauApplication) {
-        validate("SG - Niveau application", sgNiveauApplication, 10);
-        this.sgNiveauApplication = sgNiveauApplication;
+        if (ValidationUtil.validate("Applications", 10, sgNiveauApplication)) {
+            this.sgNiveauApplication = sgNiveauApplication;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgNiveauApplication");
+        }
     }
 
     public String getSgNiveauDImportanceMetier() {
@@ -195,8 +235,11 @@ public class ApplicationsDto {
     }
 
     public void setSgNiveauDImportanceMetier(String sgNiveauDImportanceMetier) {
-        validate("SG - Niveau d'importance Métier", sgNiveauDImportanceMetier, 11);
-        this.sgNiveauDImportanceMetier = sgNiveauDImportanceMetier;
+        if (ValidationUtil.validate("Applications", 11, sgNiveauDImportanceMetier)) {
+            this.sgNiveauDImportanceMetier = sgNiveauDImportanceMetier;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgNiveauDImportanceMetier");
+        }
     }
 
     public String getSgStatut() {
@@ -204,8 +247,11 @@ public class ApplicationsDto {
     }
 
     public void setSgStatut(String sgStatut) {
-        validate("SG - Statut", sgStatut, 12);
-        this.sgStatut = sgStatut;
+        if (ValidationUtil.validate("Applications", 12, sgStatut)) {
+            this.sgStatut = sgStatut;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgStatut");
+        }
     }
 
     public String getSgTypeDAuthentification() {
@@ -213,8 +259,11 @@ public class ApplicationsDto {
     }
 
     public void setSgTypeDAuthentification(String sgTypeDAuthentification) {
-        validate("SG - Type d’authentification", sgTypeDAuthentification, 13);
-        this.sgTypeDAuthentification = sgTypeDAuthentification;
+        if (ValidationUtil.validate("Applications", 13, sgTypeDAuthentification)) {
+            this.sgTypeDAuthentification = sgTypeDAuthentification;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgTypeDAuthentification");
+        }
     }
 
     public String getTypeApplication() {
@@ -222,8 +271,11 @@ public class ApplicationsDto {
     }
 
     public void setTypeApplication(String typeApplication) {
-        validate("Type application", typeApplication, 14);
-        this.typeApplication = typeApplication;
+        if (ValidationUtil.validate("Applications", 14, typeApplication)) {
+            this.typeApplication = typeApplication;
+        } else {
+            throw new IllegalArgumentException("Invalid value for typeApplication");
+        }
     }
 
     public String getSgIdMegaKear() {
@@ -266,19 +318,19 @@ public class ApplicationsDto {
         this.nom = nom;
     }
 
-    public Date getDateDeCreation() {
+    public String getDateDeCreation() {
         return dateDeCreation;
     }
 
-    public void setDateDeCreation(Date dateDeCreation) {
+    public void setDateDeCreation(String dateDeCreation) {
         this.dateDeCreation = dateDeCreation;
     }
 
-    public Date getDateDeModification() {
+    public String getDateDeModification() {
         return dateDeModification;
     }
 
-    public void setDateDeModification(Date dateDeModification) {
+    public void setDateDeModification(String dateDeModification) {
         this.dateDeModification = dateDeModification;
     }
 
@@ -287,8 +339,11 @@ public class ApplicationsDto {
     }
 
     public void setSgIsEligibleAsa(String sgIsEligibleAsa) {
-        validate("SG - Is Eligible ASA", sgIsEligibleAsa, 22);
-        this.sgIsEligibleAsa = sgIsEligibleAsa;
+        if (ValidationUtil.validate("Applications", 22, sgIsEligibleAsa)) {
+            this.sgIsEligibleAsa = sgIsEligibleAsa;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgIsEligibleAsa");
+        }
     }
 
     public String getSgIsEligibleServer() {
@@ -296,8 +351,11 @@ public class ApplicationsDto {
     }
 
     public void setSgIsEligibleServer(String sgIsEligibleServer) {
-        validate("SG - Is Eligible Server", sgIsEligibleServer, 23);
-        this.sgIsEligibleServer = sgIsEligibleServer;
+        if (ValidationUtil.validate("Applications", 23, sgIsEligibleServer)) {
+            this.sgIsEligibleServer = sgIsEligibleServer;
+        } else {
+            throw new IllegalArgumentException("Invalid value for sgIsEligibleServer");
+        }
     }
 
     public String getFramework() {
@@ -314,13 +372,6 @@ public class ApplicationsDto {
 
     public void setNombreDeTransactions(String nombreDeTransactions) {
         this.nombreDeTransactions = nombreDeTransactions;
-    }
-
-    private void validate(String fieldName, String value, int cellIndex) {
-        String[] possibleValues = ValidationConfig.getPossibleValues(sheetName, cellIndex);
-        if (possibleValues != null && !Arrays.asList(possibleValues).contains(value)) {
-            throw new IllegalArgumentException("Invalid value for " + fieldName + ": " + value);
-        }
     }
 
     @Override

@@ -1,17 +1,21 @@
 package com.internship.exceltodb.dto;
 import com.internship.exceltodb.annotation.ExcelColumn;
+import com.internship.exceltodb.annotation.DtoField;
 
 public class AppTagDto {
 
     private String sheetName;
 
     @ExcelColumn(0)
+    @DtoField("application")
     private String application;
 
     @ExcelColumn(3)
+    @DtoField("tag")
     private String tag;
 
     @ExcelColumn(4)
+    @DtoField("nomCourt")
     private String nomCourt;
 
     public AppTagDto() {

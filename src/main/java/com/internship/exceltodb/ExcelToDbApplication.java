@@ -5,13 +5,13 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import jakarta.annotation.PostConstruct;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class ExcelToDbApplication {
+public class ExcelToDbApplication implements CommandLineRunner {
 
 	@Autowired
 	private JobLauncher jobLauncher;
@@ -23,9 +23,11 @@ public class ExcelToDbApplication {
 		SpringApplication.run(ExcelToDbApplication.class, args);
 	}
 
-	@PostConstruct
-	public void run() throws Exception {
-		JobExecution jobExecution = jobLauncher.run(readExcelJob, new JobParametersBuilder().addLong("run.id", System.currentTimeMillis()).toJobParameters());
+	@Override
+	public void run(String... args) throws Exception {
+		JobExecution jobExecution = jobLauncher.run(readExcelJob, new JobParametersBuilder()
+				.addLong("run.id", System.currentTimeMillis())
+				.toJobParameters());
 		if (jobExecution.getStatus().isUnsuccessful()) {
 			System.err.println("Job failed");
 		} else {

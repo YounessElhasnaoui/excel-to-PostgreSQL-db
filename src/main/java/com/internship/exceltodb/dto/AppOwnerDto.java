@@ -1,20 +1,25 @@
 package com.internship.exceltodb.dto;
 import com.internship.exceltodb.annotation.ExcelColumn;
+import com.internship.exceltodb.annotation.DtoField;
 
 public class AppOwnerDto {
 
     private String sheetName;
 
     @ExcelColumn(0)
+    @DtoField("application")
     private String application;
 
     @ExcelColumn(2)
+    @DtoField("affectationDePersonne")
     private String affectationDePersonne;
 
     @ExcelColumn(3)
+    @DtoField("assignationDeResponsabilite")
     private String assignationDeResponsabilite;
 
     @ExcelColumn(4)
+    @DtoField("")
     private String nomCourt;
 
 

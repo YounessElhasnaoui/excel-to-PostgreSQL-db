@@ -2,6 +2,7 @@ package com.internship.exceltodb.config;
 
 import com.internship.exceltodb.dto.*;
 import com.internship.exceltodb.reader.DynamicExcelReader;
+import com.internship.exceltodb.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
@@ -13,8 +14,8 @@ import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -32,6 +33,33 @@ public class BatchConfiguration {
 
     @Autowired
     private PlatformTransactionManager transactionManager;
+
+    @Autowired
+    private ApplicationsService applicationsService;
+
+    @Autowired
+    private AppOwnerService appOwnerService;
+
+    @Autowired
+    private AppTagService appTagService;
+
+    @Autowired
+    private AppRTPOService appRTPOService;
+
+    @Autowired
+    private PersonnesService personnesService;
+
+    @Autowired
+    private AppTechnoService appTechnoService;
+
+    @Autowired
+    private TechnoTypeService technoTypeService;
+
+    @Autowired
+    private TypeService typeService;
+
+    @Autowired
+    private CapacityService capacityService;
 
     @Value("${excel.file.path}")
     private String excelFilePath;
@@ -103,53 +131,90 @@ public class BatchConfiguration {
 
     @Bean
     public ItemWriter<ApplicationsDto> applicationsItemWriter() {
-        return createWriter();
+        return items -> {
+            for (ApplicationsDto applicationsDto : items) {
+                applicationsService.save(applicationsDto);
+                logger.info("Saved ApplicationsDto: {}", applicationsDto);
+            }
+        };
     }
 
     @Bean
     public ItemWriter<AppOwnerDto> appOwnerItemWriter() {
-        return createWriter();
+        return items -> {
+            for (AppOwnerDto appOwnerDto : items) {
+                appOwnerService.save(appOwnerDto);
+                logger.info("Saved AppOwnerDto: {}", appOwnerDto);
+            }
+        };
     }
 
     @Bean
     public ItemWriter<AppTagDto> appTagItemWriter() {
-        return createWriter();
+        return items -> {
+            for (AppTagDto appTagDto : items) {
+                appTagService.save(appTagDto);
+                logger.info("Saved AppTagDto: {}", appTagDto);
+            }
+        };
     }
 
     @Bean
     public ItemWriter<AppRTPODto> appRtpoItemWriter() {
-        return createWriter();
+        return items -> {
+            for (AppRTPODto appRtpodto : items) {
+                appRTPOService.save(appRtpodto);
+                logger.info("Saved AppRTPODto: {}", appRtpodto);
+            }
+        };
     }
 
     @Bean
     public ItemWriter<PersonnesDto> personnesItemWriter() {
-        return createWriter();
+        return items -> {
+            for (PersonnesDto personnesDto : items) {
+                personnesService.save(personnesDto);
+                logger.info("Saved PersonnesDto: {}", personnesDto);
+            }
+        };
     }
 
     @Bean
     public ItemWriter<AppTechnoDto> appTechnoItemWriter() {
-        return createWriter();
+        return items -> {
+            for (AppTechnoDto appTechnoDto : items) {
+                appTechnoService.save(appTechnoDto);
+                logger.info("Saved AppTechnoDto: {}", appTechnoDto);
+            }
+        };
     }
 
     @Bean
     public ItemWriter<TechnoTypeDto> technoTypeItemWriter() {
-        return createWriter();
+        return items -> {
+            for (TechnoTypeDto technoTypeDto : items) {
+                technoTypeService.save(technoTypeDto);
+                logger.info("Saved TechnoTypeDto: {}", technoTypeDto);
+            }
+        };
     }
 
     @Bean
     public ItemWriter<TypeAllDto> typeItemWriter() {
-        return createWriter();
+        return items -> {
+            for (TypeAllDto typeAllDto : items) {
+                typeService.save(typeAllDto);
+                logger.info("Saved TypeAllDto: {}", typeAllDto);
+            }
+        };
     }
 
     @Bean
     public ItemWriter<CapacityDto> capacityItemWriter() {
-        return createWriter();
-    }
-
-    private <T> ItemWriter<T> createWriter() {
         return items -> {
-            for (T item : items) {
-                logger.info("Read data: {}", item);
+            for (CapacityDto capacityDto : items) {
+                capacityService.save(capacityDto);
+                logger.info("Saved CapacityDto: {}", capacityDto);
             }
         };
     }

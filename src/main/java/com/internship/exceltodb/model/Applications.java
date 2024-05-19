@@ -4,7 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
-import java.util.Date;
 
 @Entity
 @Table(name = "applications")
@@ -27,7 +26,7 @@ public class Applications {
     private String sgHebergement;
 
     @Column(name = "sg_date_de_mise_en_prod")
-    private Date sgDateDeMiseEnProd;
+    private String sgDateDeMiseEnProd;
 
     @Column(name = "sg_exposition_externe")
     private String sgExpositionExterne;
@@ -63,7 +62,7 @@ public class Applications {
     private String sgLastAccess;
 
     @Column(name = "sg_cout_de_fonctionnement")
-    private Long sgCoutDeFonctionnement;
+    private String sgCoutDeFonctionnement;
 
     @Column(name = "sg_cout_de_licence")
     private String sgCoutDeLicence;
@@ -72,10 +71,10 @@ public class Applications {
     private String nom;
 
     @Column(name = "date_de_creation")
-    private Date dateDeCreation;
+    private String dateDeCreation;
 
     @Column(name = "date_de_modification")
-    private Date dateDeModification;
+    private String dateDeModification;
 
     @Column(name = "sg_is_eligible_asa")
     private String sgIsEligibleAsa;
@@ -110,7 +109,7 @@ public class Applications {
         return sgHebergement;
     }
 
-    public Date getSgDateDeMiseEnProd() {
+    public String getSgDateDeMiseEnProd() {
         return sgDateDeMiseEnProd;
     }
 
@@ -158,7 +157,7 @@ public class Applications {
         return sgLastAccess;
     }
 
-    public Long getSgCoutDeFonctionnement() {
+    public String getSgCoutDeFonctionnement() {
         return sgCoutDeFonctionnement;
     }
 
@@ -170,11 +169,11 @@ public class Applications {
         return nom;
     }
 
-    public Date getDateDeCreation() {
+    public String getDateDeCreation() {
         return dateDeCreation;
     }
 
-    public Date getDateDeModification() {
+    public String getDateDeModification() {
         return dateDeModification;
     }
 

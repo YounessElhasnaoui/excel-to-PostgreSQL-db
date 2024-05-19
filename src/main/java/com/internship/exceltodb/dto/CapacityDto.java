@@ -1,19 +1,24 @@
 package com.internship.exceltodb.dto;
 import com.internship.exceltodb.annotation.ExcelColumn;
+import com.internship.exceltodb.annotation.DtoField;
 public class CapacityDto {
 
     private String sheetName;
 
     @ExcelColumn(0)
+    @DtoField("capaciteMetier")
     private String capaciteMetier;
 
     @ExcelColumn(1)
+    @DtoField("nomCourt")
     private String nomCourt;
 
     @ExcelColumn(2)
+    @DtoField("commentaire")
     private String commentaire;
 
     @ExcelColumn(3)
+    @DtoField("sgCapailityIdposkear")
     private String sgCapailityIdposkear;
 
     public CapacityDto() {
