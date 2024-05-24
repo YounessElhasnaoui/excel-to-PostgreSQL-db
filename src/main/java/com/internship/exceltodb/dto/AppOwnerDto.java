@@ -19,7 +19,7 @@ public class AppOwnerDto {
     private String assignationDeResponsabilite;
 
     @ExcelColumn(4)
-    @DtoField("")
+    @DtoField("nomCourt")
     private String nomCourt;
 
 

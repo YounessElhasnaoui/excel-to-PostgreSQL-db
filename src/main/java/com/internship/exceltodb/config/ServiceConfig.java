@@ -1,9 +1,7 @@
 package com.internship.exceltodb.config;
 
-import com.internship.exceltodb.model.*;
 import com.internship.exceltodb.repository.*;
 import com.internship.exceltodb.service.*;
-import com.internship.exceltodb.dto.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Qualifier;

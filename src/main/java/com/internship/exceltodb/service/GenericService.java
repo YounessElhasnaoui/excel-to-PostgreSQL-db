@@ -2,8 +2,6 @@ package com.internship.exceltodb.service;
 
 import com.internship.exceltodb.annotation.DtoField;
 import com.internship.exceltodb.repository.GenericRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -12,14 +10,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
-public class GenericService<D, E, ID extends Serializable> {
+public abstract class GenericService<D, E, ID extends Serializable> {
 
     private final GenericRepository<E, ID> repository;
     private final Class<D> dtoClass;
     private final Class<E> entityClass;
 
-    @Autowired
     public GenericService(GenericRepository<E, ID> repository, Class<D> dtoClass, Class<E> entityClass) {
         this.repository = repository;
         this.dtoClass = dtoClass;
